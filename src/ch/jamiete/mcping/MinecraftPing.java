@@ -15,7 +15,6 @@ public class MinecraftPing {
         return new Gson().fromJson(json, MinecraftPingReply.class);
     }
 
-    // Новий метод для отримання сирого JSON
     public String getPingRaw(final MinecraftPingOptions options) throws IOException {
         this.options = options;
         validateOptions();
@@ -32,7 +31,7 @@ public class MinecraftPing {
                 ByteArrayOutputStream handshakeBytes = new ByteArrayOutputStream();
                 DataOutputStream handshake = new DataOutputStream(handshakeBytes);
                 handshake.writeByte(0x00); // Packet ID for handshake
-                writeVarInt(handshake, 210); // Протокол 1.10 (версія 210)
+                writeVarInt(handshake, 5); // Протокол 1.7.10 (версія 5)
                 writeVarInt(handshake, hostname.length());
                 handshake.writeBytes(hostname);
                 handshake.writeShort(port);
